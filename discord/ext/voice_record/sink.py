@@ -23,27 +23,32 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from discord.errors import DiscordException
+from abc import ABCMeta, abstractmethod
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union, overload
 
-__all__ = ("VoiceRecordException", "AlreadyRecording")
+if TYPE_CHECKING:
+    from io import BytesIO
 
-
-class VoiceRecordException(DiscordException):
-    """Base exception class for voice record feature
-
-    Ideally, you could catch any exceptions thrown by this voice record function to handle them.
-    """
-
-    pass
+__all__ = ("BaseSink",)
 
 
-class AlreadyRecording(VoiceRecordException):
-    """Returns this exception if a function that is not available is used while recording."""
+class BaseSink(metaclass=ABCMeta):
+    """A sink is a basic object that formats and transmits recording data."""
 
-    pass
+    @abstractmethod
+    async def format_data(self, raw_data: BytesIO) -> Any:
+        """|coro|
+
+        Formats and outputs the recorded data in bytes.
+
+        If the new object has a parent class as this object, that method must be used.
+
+        Parameters
+        -----------
+        raw_data: :class:`io.BytesIO`
+            Recorded raw data.
+        """
+        pass
 
 
-class NotRecording(VoiceRecordException):
-    """Returns this exception if a function that is not available is used while not recording."""
 
-    pass

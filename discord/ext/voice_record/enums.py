@@ -23,27 +23,11 @@ DEALINGS IN THE SOFTWARE.
 
 from __future__ import annotations
 
-from discord.errors import DiscordException
-
-__all__ = ("VoiceRecordException", "AlreadyRecording")
+from enum import Enum
 
 
-class VoiceRecordException(DiscordException):
-    """Base exception class for voice record feature
+class FilterStatus(Enum):
+    recording = 0
+    stopped = 1
+    paused = 2
 
-    Ideally, you could catch any exceptions thrown by this voice record function to handle them.
-    """
-
-    pass
-
-
-class AlreadyRecording(VoiceRecordException):
-    """Returns this exception if a function that is not available is used while recording."""
-
-    pass
-
-
-class NotRecording(VoiceRecordException):
-    """Returns this exception if a function that is not available is used while not recording."""
-
-    pass
