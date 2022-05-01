@@ -106,7 +106,7 @@ class RecordFileTree:
 
     Parameters
     -----------
-    files: Dict[discord_record.types.snowflake.Snowflake, discord.File]
+    files: Dict[discord.types.snowflake.Snowflake, discord.File]
         File data from the user audio recording.
     """
 
