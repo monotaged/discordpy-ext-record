@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from discord.errors import DiscordException
 
-__all__ = ("VoiceRecordException", "AlreadyRecording")
+__all__ = ("VoiceRecordException", "AlreadyRecording", "NotRecording")
 
 
 class VoiceRecordException(DiscordException):

@@ -24,6 +24,9 @@ DEALINGS IN THE SOFTWARE.
 from __future__ import annotations
 
 from enum import Enum
+from .sink import FFMPEGBaseSink
+
+__all__ = ("FilterStatus", "AudioSink")
 
 
 class FilterStatus(Enum):
@@ -31,3 +34,11 @@ class FilterStatus(Enum):
     stopped = 1
     paused = 2
 
+
+class AudioSink(Enum):
+    m4a = FFMPEGBaseSink(file_type="ipod", save_temporary_file=True, extension="m4a")
+    mka = FFMPEGBaseSink(file_type="matroska", extension="mka")
+    mkv = FFMPEGBaseSink(file_type="matroska", extension="mkv")
+    mp3 = FFMPEGBaseSink(file_type="mp3", extension="mp3")
+    mp4 = FFMPEGBaseSink(file_type="mp4", save_temporary_file=True, extension="mp4")
+    ogg = FFMPEGBaseSink(file_type="ogg", extension="ogg")
